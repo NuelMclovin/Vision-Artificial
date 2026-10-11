@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>NutriVision AI - Reporte de Avance y Dataset</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
+
+    @page {
+      size: letter;
+      margin: 1.4cm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.45;
+      font-size: 13px;
+    }
+
+    .header-table {
+      width: 100%;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .badge-institution {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+    }
+
+    .meta-item strong {
+      color: #0f172a;
+    }
+
+    .meta-item span {
+      color: #475569;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: #2563eb;
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+      text-align: justify;
+    }
+
+    /* Caja Destacada del Dataset */
+    .dataset-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 1.5px solid #86efac;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 10px 0 14px 0;
+    }
+
+    .dataset-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .dataset-tag {
+      background: #16a34a;
+      color: #ffffff;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .dataset-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #14532d;
+    }
+
+    .dataset-desc {
+      font-size: 11px;
+      color: #166534;
+      margin-bottom: 6px;
+    }
+
+    .dataset-link-box {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      padding: 6px 10px;
+      word-break: break-all;
+    }
+
+    .dataset-link {
+      color: #15803d;
+      font-weight: 700;
+      text-decoration: underline;
+      font-size: 11.5px;
+    }
+
+    /* Contenedor de Captura de Pantalla */
+    .screenshot-wrapper {
+      margin: 10px 0 12px 0;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+
+    .screenshot-frame {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+      background: #f8fafc;
+      padding: 4px;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .screenshot-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .caption {
+      font-size: 10.5px;
+      color: #64748b;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* Puntos clave / Componentes */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .feature-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .feature-box h4 {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    .feature-box p {
+      font-size: 10.5px;
+      color: #475569;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      padding-top: 8px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado Institucional -->
+  <header class="header-table">
+    <span class="badge-institution">IPN • ESCOM • Visión Artificial</span>
+    <h1>NutriVision AI — Reporte de Interfaz y Dataset NOM-051</h1>
+    <p class="subtitle">Plataforma de Visión Artificial para asistencia a personas con debilidad visual</p>
+  </header>
+
+  <!-- Metadatos de Alumnos y Curso -->
+  <div class="meta-grid">
+    <div class="meta-item">
+      <strong>Alumnos:</strong> <span>Mejia Perez Emanuel Esau • Ana Andrea Dominguez Jimenez</span><br>
+      <strong>Frontend:</strong> <span>Angular 22, TypeScript, SCSS (Liquid Glass & Neumorphism 2.0)</span>
+    </div>
+    <div class="meta-item">
+      <strong>Materia:</strong> <span>Visión Artificial (5° Semestre) &nbsp;|&nbsp; <strong>Grupo:</strong> 5BV1</span><br>
+      <strong>Backend (Inferencia):</strong> <span>Python (FastAPI, OpenCV, YOLO)</span>
+    </div>
+  </div>
+
+  <!-- Descripción del Proyecto -->
+  <section>
+    <h3 class="section-title">Descripción del Proyecto</h3>
+    <p>
+      <strong>NutriVision AI</strong> es una herramienta asistiva para personas con debilidad visual enfocada en identificar sellos de advertencia de la <strong>NOM-051</strong> en productos comerciales en México. Se desarrolló el cascarón de la interfaz en <strong>Angular 22</strong> con estilos <em>Neumorphism 2.0</em> y <em>Liquid Glass</em>, estructurado para enviar la imagen hacia un backend en <strong>Python</strong> para su procesamiento.
+    </p>
+  </section>
+
+  <!-- Liga al Dataset -->
+  <section>
+    <div class="dataset-card">
+      <div class="dataset-header">
+        <span class="dataset-tag">Google Drive</span>
+        <h3 class="dataset-title">Dataset de Entrenamiento y Validación (NOM-051)</h3>
+      </div>
+      <p class="dataset-desc">
+        Repositorio de imágenes de productos comerciales mexicanos con sellos oficiales de advertencia:
+      </p>
+      <div class="dataset-link-box">
+        <a href="https://drive.google.com/drive/folders/1uWbUXPamx7q5xCZVcEs3IdejmHt3pVDR" class="dataset-link" target="_blank">
+          https://drive.google.com/drive/folders/1uWbUXPamx7q5xCZVcEs3IdejmHt3pVDR
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Captura de la Interfaz -->
+  <section class="screenshot-wrapper">
+    <h3 class="section-title">Evidencia de la Interfaz en Funcionamiento</h3>
+    <div class="screenshot-frame">
+      <img src="captura_interfaz.png" alt="Captura de NutriVision AI" class="screenshot-img">
+    </div>
+    <p class="caption">Figura 1: Cascarón de NutriVision AI mostrando la subida del producto real ("Barra2.jpg", 1.48 MB) y los cascarones preparados para la inferencia en Python.</p>
+  </section>
+
+  <!-- Especificaciones -->
+  <section>
+    <h3 class="section-title">Arquitectura Frontend y Backend en Python</h3>
+    <div class="features-grid">
+      <div class="feature-box">
+        <h4>👁️ Visor de Imagen (Angular)</h4>
+        <p>Dropzone interactivo que permite arrastrar y soltar o seleccionar fotos de empaques con borde de cristal líquido.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🐍 Backend de Inferencia (Python)</h4>
+        <p>Servicio en Python (FastAPI/OpenCV/YOLO) que recibirá la imagen vía HTTP POST para detectar y clasificar los sellos.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-note">
+    <span>NutriVision AI — Alumnos: Mejia Perez Emanuel Esau & Ana Andrea Dominguez Jimenez</span>
+    <span>ESCOM - IPN • Grupo 5BV1</span>
+  </footer>
+
+</body>
+</html>
