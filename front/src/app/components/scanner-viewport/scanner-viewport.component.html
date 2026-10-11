@@ -1,0 +1,113 @@
+<div class="viewport-wrapper liquid-card">
+  <!-- Cabecera del Visor -->
+  <div class="viewport-header">
+    <div class="header-status">
+      <span class="hud-status-indicator" [class.has-image]="vision.selectedImage()">
+        <span class="status-core"></span>
+        <span class="status-ring"></span>
+      </span>
+      <div class="status-texts">
+        <h2 class="viewport-title">Visor de Imagen del Producto</h2>
+        <span class="viewport-mode-tag">
+          {{ vision.selectedImage() ? 'IMAGEN CARGADA LISTA PARA PROCESAMIENTO' : 'ESPERANDO ARCHIVO DE IMAGEN' }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Controles cuando hay imagen -->
+    <div class="header-actions" *ngIf="vision.selectedImage()">
+      <button 
+        type="button" 
+        class="neu-btn neu-btn-sm" 
+        (click)="triggerFileInput()"
+        title="Seleccionar otra imagen">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <span>Cambiar</span>
+      </button>
+
+      <button 
+        type="button" 
+        class="neu-btn neu-btn-sm neu-btn-danger" 
+        (click)="onRemoveImage()"
+        title="Quitar imagen actual">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+        <span>Quitar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenedor Principal: Dropzone / Visualizador de Imagen -->
+  <div 
+    class="canvas-stage"
+    [class.drag-over]="isDragging()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave()"
+    (drop)="onDrop($event)">
+
+    <input 
+      #fileInput 
+      type="file" 
+      accept="image/*" 
+      class="hidden-input" 
+      (change)="onFileSelected($event)">
+
+    <!-- ============================================================== -->
+    <!-- ESTADO A: IMAGEN CARGADA POR EL USUARIO                         -->
+    <!-- ============================================================== -->
+    <div class="loaded-image-container" *ngIf="vision.selectedImage() as imgUrl">
+      <div class="image-frame">
+        <img [src]="imgUrl" [alt]="vision.fileName() || 'Imagen de producto cargada'" class="preview-img">
+      </div>
+
+      <div class="image-info-floating-pill neu-inset">
+        <span class="file-icon">🖼️</span>
+        <span class="file-name">{{ vision.fileName() }}</span>
+        <span class="file-size" *ngIf="vision.fileSize()">({{ vision.fileSize() }})</span>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- ESTADO B: ZONA DE CARGA DE ARCHIVO (DROPZONE LIQUID GLASS)      -->
+    <!-- ============================================================== -->
+    <div class="upload-dropzone" *ngIf="!vision.selectedImage()">
+      <!-- Anillos y orbe de carga -->
+      <div class="dropzone-visual-orb">
+        <div class="orb-glass-lens">
+          <svg viewBox="0 0 24 24" class="upload-icon-svg" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <div class="lens-shimmer-top"></div>
+        </div>
+      </div>
+
+      <div class="dropzone-text">
+        <h3 class="dropzone-title">Subir Imagen de Producto</h3>
+        <p class="dropzone-subtitle">Arrastra y suelta aquí la fotografía del empaque, o haz clic en el botón</p>
+      </div>
+
+      <button 
+        type="button" 
+        class="neu-btn neu-btn-primary btn-select-file" 
+        (click)="triggerFileInput()">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <span>Seleccionar Archivo</span>
+      </button>
+
+      <span class="format-notes">Formatos admitidos: JPG, PNG, WEBP</span>
+    </div>
+
+  </div>
+</div>

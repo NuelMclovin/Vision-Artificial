@@ -1,0 +1,47 @@
+// ==============================================================================
+// VARIABLES DE DISEÑO: NEUMORPHISM 2.0 & LIQUID GLASS + ACCESIBILIDAD NOM-051
+// ==============================================================================
+
+// Paleta Base Neumorphism 2.0 (Soft Clay / Slate Moderno)
+$bg-primary: #e6ebf2;
+$bg-secondary: #dde3eb;
+$bg-card: #eaf0f8;
+$text-primary: #192132;
+$text-secondary: #4d5870;
+$text-muted: #748099;
+
+// Neumorphism 2.0: Contraste Selectivo y Bordes de Asistencia (Anti-Accessibility-Trap)
+$neu-border-light: rgba(255, 255, 255, 0.85);
+$neu-border-dark: rgba(163, 177, 198, 0.35);
+$neu-shadow-dark: #b8c4d4;
+$neu-shadow-light: #ffffff;
+
+// Liquid Glass: Propiedades Ópticas Dinámicas y Especulares
+$glass-surface: rgba(255, 255, 255, 0.45);
+$glass-surface-hover: rgba(255, 255, 255, 0.65);
+$glass-border-outer: rgba(255, 255, 255, 0.6);
+$glass-border-inner: rgba(255, 255, 255, 0.95);
+$glass-blur: 24px;
+$glass-saturate: 180%;
+
+// Acentos Funcionales "Pops" de Color (Alta Luminancia y Contraste WCAG AA/AAA)
+$accent-cyan: #00bcd4;
+$accent-blue: #2563eb;
+$accent-indigo: #4f46e5;
+$accent-amber: #f59e0b;
+$accent-red: #ef4444;
+$accent-emerald: #10b981;
+$accent-purple: #8b5cf6;
+
+// Sellos Oficiales de México (NOM-051)
+$seal-black: #0c0d10;
+$seal-white: #ffffff;
+$seal-border-width: 3px;
+
+// Modo Alto Contraste Asistivo (Para Baja Visión Severa)
+$hc-bg: #000000;
+$hc-surface: #121212;
+$hc-border: #ffd700; // Amarillo de alta visibilidad
+$hc-text: #ffffff;
+$hc-accent: #00ffff; // Cyan ultra-brillante
+

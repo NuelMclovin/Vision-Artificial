@@ -1,0 +1,103 @@
+@use '../styles/variables' as *;
+@use '../styles/neumorphism-2' as *;
+@use '../styles/liquid-glass' as *;
+
+.app-main-layout {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+// Orbes de Luz Ambiental para Refracción de Liquid Glass
+.ambient-glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  animation: float-orb 12s infinite ease-in-out alternate;
+
+  &.orb-1 {
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.45) 0%, rgba(59, 130, 246, 0) 70%);
+    top: -80px;
+    left: -80px;
+  }
+
+  &.orb-2 {
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, rgba(139, 92, 246, 0) 70%);
+    top: 20%;
+    right: -100px;
+    animation-delay: -4s;
+  }
+
+  &.orb-3 {
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.35) 0%, rgba(20, 184, 166, 0) 70%);
+    bottom: -100px;
+    left: 25%;
+    animation-delay: -8s;
+  }
+}
+
+@keyframes float-orb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, 50px) scale(0.95); }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 1040px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viewport-column,
+.results-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.backend-section {
+  margin-top: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.app-footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 16px;
+  color: $text-secondary;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
+
+  .footer-tech {
+    font-size: 0.74rem;
+    color: $text-muted;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,255 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/neumorphism-2' as *;
+@use '../../../styles/liquid-glass' as *;
+
+.results-wrapper {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 480px;
+}
+
+// CASO 1: Estado Vacío
+.empty-state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  gap: 16px;
+  margin: auto 0;
+
+  .empty-icon-orb {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.3) 0%, rgba(37, 99, 235, 0.1) 60%, rgba(0, 188, 212, 0.15) 100%);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $accent-blue;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+
+    .empty-svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .empty-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $text-primary;
+  }
+
+  .empty-desc {
+    font-size: 0.88rem;
+    color: $text-secondary;
+    max-width: 360px;
+    line-height: 1.5;
+  }
+
+  .backend-placeholder-pill {
+    margin-top: 10px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: $text-muted;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    .dot-waiting {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: $accent-amber;
+      box-shadow: 0 0 6px $accent-amber;
+    }
+  }
+}
+
+// CASO 2: Con Imagen Cargada
+.loaded-shell-box {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.file-summary-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+
+  .summary-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .file-status-tag {
+      align-self: flex-start;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: $accent-emerald;
+      letter-spacing: 0.05em;
+    }
+
+    .file-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: $text-primary;
+      word-break: break-all;
+    }
+
+    .file-meta {
+      font-size: 0.78rem;
+      color: $text-muted;
+      font-weight: 600;
+    }
+  }
+
+  .status-ready-badge {
+    padding: 8px 14px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+
+    .badge-icon {
+      font-size: 0.9rem;
+    }
+
+    .badge-text {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: $text-primary;
+    }
+  }
+}
+
+.action-trigger-row {
+  .btn-submit-backend {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.shell-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .heading-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: $text-primary;
+    }
+
+    .heading-hint {
+      font-size: 0.72rem;
+      color: $text-muted;
+      font-weight: 700;
+    }
+  }
+
+  .placeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .seal-placeholder-card {
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1.5px dashed rgba(200, 215, 235, 0.7);
+
+    .seal-skeleton-octagon {
+      width: 58px;
+      height: 58px;
+      background: #0c0d10;
+      clip-path: polygon(
+        29.29% 0%, 70.71% 0%, 
+        100% 29.29%, 100% 70.71%, 
+        70.71% 100%, 29.29% 100%, 
+        0% 70.71%, 0% 29.29%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      border: 2px solid #ffffff;
+    }
+
+    .skeleton-lines {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .sk-line {
+        height: 10px;
+        border-radius: 4px;
+        background: rgba(160, 180, 205, 0.35);
+
+        &.title {
+          width: 80%;
+          height: 12px;
+          background: rgba(140, 165, 195, 0.5);
+        }
+
+        &.desc {
+          width: 60%;
+        }
+      }
+    }
+  }
+}
+
+.diagnosis-shell-card {
+  padding: 18px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .diagnosis-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: $text-primary;
+  }
+
+  .diag-placeholder-text {
+    font-size: 0.84rem;
+    color: $text-secondary;
+    line-height: 1.45;
+  }
+}

@@ -1,0 +1,22 @@
+# Node & Angular
+front/node_modules/
+front/.angular/
+front/dist/
+front/.vscode/
+front/.idea/
+front/npm-debug.log*
+front/yarn-debug.log*
+front/yarn-error.log*
+
+# Python & Backend
+backend/__pycache__/
+backend/*.pyc
+backend/venv/
+backend/.env
+backend/.pytest_cache/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

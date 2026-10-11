@@ -1,0 +1,30 @@
+<div class="app-main-layout">
+  <!-- Fondo con Orbes de Luz Ambiental para Refracción de Vidrio Líquido -->
+  <div class="ambient-glow-orb orb-1" aria-hidden="true"></div>
+  <div class="ambient-glow-orb orb-2" aria-hidden="true"></div>
+  <div class="ambient-glow-orb orb-3" aria-hidden="true"></div>
+
+  <!-- Cabecera de Accesibilidad y Navegación -->
+  <app-header></app-header>
+
+  <!-- Contenedor Principal: Layout de Dos Columnas (Cascarón de la Interfaz) -->
+  <main class="content-grid" role="main">
+    
+    <!-- Columna Izquierda: Visor y Carga de Imagen -->
+    <section class="viewport-column" aria-label="Área de carga de imagen">
+      <app-scanner-viewport></app-scanner-viewport>
+    </section>
+
+    <!-- Columna Derecha: Panel de Diagnóstico y Espacio para Backend -->
+    <section class="results-column" aria-label="Estructura de resultados de sellos">
+      <app-results-panel></app-results-panel>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página Accesible -->
+  <footer class="app-footer">
+    <p>NutriVision AI • Visión Artificial Asistiva • NOM-051 México</p>
+    <p class="footer-tech">Neumorphism 2.0 & Liquid Glass Architecture</p>
+  </footer>
+</div>

@@ -1,0 +1,67 @@
+<header class="header-container liquid-glass-panel" role="banner">
+  <!-- Logotipo y Nombre del Proyecto -->
+  <div class="brand-group">
+    <div class="brand-icon-wrapper liquid-lens-icon">
+      <!-- Icono de Lente Biónica con Refracción -->
+      <svg class="eye-lens-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" stroke-opacity="0.6"/>
+        <path d="M4 16C8 10 24 10 28 16C24 22 8 22 4 16Z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2"/>
+        <circle cx="16" cy="16" r="5" fill="currentColor"/>
+        <circle cx="14" cy="14" r="2" fill="#ffffff"/>
+      </svg>
+      <div class="lens-shimmer"></div>
+    </div>
+    
+    <div class="brand-text">
+      <div class="brand-title">
+        <span>NutriVision</span>
+        <span class="ai-badge">AI</span>
+      </div>
+      <p class="brand-subtitle">Visión Artificial Asistiva • NOM-051 México</p>
+    </div>
+  </div>
+
+  <!-- Estado del Cascarón -->
+  <div class="backend-status-pill neu-inset" title="Cascarón de interfaz">
+    <span class="status-dot"></span>
+    <span class="status-label">Cascarón Frontend • NOM-051</span>
+  </div>
+
+  <!-- Controles de Accesibilidad Neumorphism 2.0 -->
+  <div class="accessibility-toolbar" role="toolbar" aria-label="Herramientas de accesibilidad">
+    
+    <!-- Botón: Tamaño de Fuente Dinámico -->
+    <button 
+      type="button" 
+      class="neu-btn neu-btn-tool"
+      (click)="accessibility.cycleTextScale()"
+      title="Cambiar tamaño de texto para personas con baja visión">
+      <svg class="tool-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="4 7 4 4 20 4 20 7"></polyline>
+        <line x1="9" y1="20" x2="15" y2="20"></line>
+        <line x1="12" y1="4" x2="12" y2="20"></line>
+      </svg>
+      <span class="btn-text">
+        Texto: {{ accessibility.textScale() === 'normal' ? 'Normal' : (accessibility.textScale() === 'large' ? 'Grande' : 'XL') }}
+      </span>
+    </button>
+
+    <!-- Botón: Modo Alto Contraste Asistivo -->
+    <button 
+      type="button" 
+      class="neu-btn neu-btn-tool" 
+      [class.neu-active]="accessibility.theme() === 'high-contrast'"
+      (click)="accessibility.toggleTheme()"
+      [attr.aria-pressed]="accessibility.theme() === 'high-contrast'"
+      title="Alternar entre Vidrio Líquido y Alto Contraste Asistivo">
+      <svg class="tool-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10z" fill="currentColor"></path>
+      </svg>
+      <span class="btn-text">
+        {{ accessibility.theme() === 'high-contrast' ? 'Alto Contraste' : 'Liquid Glass' }}
+      </span>
+    </button>
+
+  </div>
+</header>

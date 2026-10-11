@@ -1,0 +1,103 @@
+@use 'sass:color';
+@use 'variables' as *;
+
+// ==============================================================================
+// MIXINS Y CLASES NEUMORPHISM 2.0 (SOFT UI EVOLUCIONADO)
+// ==============================================================================
+
+// Superficie Neumórfica 2.0 estándar (con reborde nítido para contraste y accesibilidad)
+@mixin neu-surface($radius: 20px, $elevation: 8px) {
+  $blur: $elevation * 2;
+  $neg-elevation: 0px - $elevation;
+
+  background: linear-gradient(145deg, color.adjust($bg-card, $lightness: 1.5%), color.adjust($bg-card, $lightness: -1%));
+  border-radius: $radius;
+  // Borde de asistencia 2.0: Delimita el elemento claramente sobre el fondo
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    $elevation $elevation $blur $neu-shadow-dark,
+    $neg-elevation $neg-elevation $blur $neu-shadow-light;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+// Botón táctil Neumórfico 2.0 (Relieve físico con feedback al presionar)
+@mixin neu-button($radius: 14px) {
+  background: linear-gradient(145deg, #f0f5fc, #dfe6f0);
+  border-radius: $radius;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    5px 5px 12px $neu-shadow-dark,
+    -5px -5px 12px $neu-shadow-light,
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: $text-primary;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  outline: none;
+  user-select: none;
+
+  &:hover {
+    background: linear-gradient(145deg, #f7fbff, #e3ebf6);
+    box-shadow: 
+      7px 7px 16px $neu-shadow-dark,
+      -7px -7px 16px $neu-shadow-light,
+      inset 0 1px 1px rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+
+  &:active,
+  &.neu-active {
+    background: linear-gradient(145deg, #dbe2ed, #edf3fa);
+    box-shadow: 
+      inset 4px 4px 8px $neu-shadow-dark,
+      inset -4px -4px 8px $neu-shadow-light;
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    border-color: $accent-blue;
+    box-shadow: 0 0 0 3px rgba($accent-blue, 0.35);
+  }
+}
+
+// Botón con Pop de Color Activo (Neumorphism 2.0 Functional Accent)
+@mixin neu-button-accent($color: $accent-blue) {
+  background: linear-gradient(145deg, color.adjust($color, $lightness: 6%), color.adjust($color, $lightness: -6%));
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    5px 5px 14px rgba($color, 0.35),
+    -3px -3px 10px rgba(255, 255, 255, 0.8);
+
+  &:hover {
+    background: linear-gradient(145deg, color.adjust($color, $lightness: 10%), $color);
+    box-shadow: 
+      6px 6px 18px rgba($color, 0.45),
+      -4px -4px 12px rgba(255, 255, 255, 0.9);
+  }
+
+  &:active,
+  &.neu-active {
+    background: linear-gradient(145deg, color.adjust($color, $lightness: -6%), color.adjust($color, $lightness: 4%));
+    box-shadow: 
+      inset 3px 3px 6px rgba(0, 0, 0, 0.3),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+  }
+}
+
+// Cavidad / Estado Hundido (Inset para inputs y contenedores)
+@mixin neu-concave($radius: 14px) {
+  background: #e2e8f1;
+  border-radius: $radius;
+  border: 1px solid rgba(200, 210, 225, 0.5);
+  box-shadow: 
+    inset 4px 4px 8px $neu-shadow-dark,
+    inset -4px -4px 8px $neu-shadow-light;
+}
+
+// (Las clases utilitarias globales .neu-card, .neu-btn, etc. se definen en styles.scss)

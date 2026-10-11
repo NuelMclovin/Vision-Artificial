@@ -1,0 +1,153 @@
+@use 'sass:color';
+@use 'styles/variables' as *;
+@use 'styles/neumorphism-2' as *;
+@use 'styles/liquid-glass' as *;
+
+// Google Fonts: Plus Jakarta Sans y Outfit
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: $text-primary;
+  background-color: $bg-primary;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(147, 197, 253, 0.45) 0px, transparent 50%),
+    radial-gradient(at 85% 20%, rgba(167, 139, 250, 0.35) 0px, transparent 45%),
+    radial-gradient(at 50% 85%, rgba(110, 231, 183, 0.25) 0px, transparent 55%),
+    linear-gradient(135deg, #e4ebf5 0%, #dce4f0 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Accesibilidad: Escalas de Fuente Dinámicas
+body {
+  font-size: 16px;
+  line-height: 1.5;
+
+  &.text-size-large {
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  &.text-size-xlarge {
+    font-size: 22px;
+    line-height: 1.7;
+  }
+}
+
+// Modo Alto Contraste Asistivo (Para Baja Visión Severa)
+body.high-contrast-mode {
+  background: $hc-bg !important;
+  color: $hc-text !important;
+  background-image: none !important;
+
+  .neu-card,
+  .liquid-card,
+  .neu-surface {
+    background: $hc-surface !important;
+    border: 2px solid $hc-border !important;
+    box-shadow: 0 0 16px rgba($hc-border, 0.25) !important;
+    color: #ffffff !important;
+  }
+
+  .neu-btn,
+  button {
+    background: #1a1a1a !important;
+    border: 2px solid $hc-border !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+
+    &:hover, &:focus {
+      background: $hc-border !important;
+      color: #000000 !important;
+    }
+  }
+
+  .seal-octagon {
+    border: 4px solid $hc-border !important;
+    box-shadow: 0 0 15px $hc-border !important;
+  }
+
+  .text-muted,
+  .text-secondary {
+    color: #e5e7eb !important;
+  }
+}
+
+// Enfoque Accesible para Navegación por Teclado
+:focus-visible {
+  outline: 3px solid $accent-blue !important;
+  outline-offset: 3px !important;
+}
+
+// Scrollbar estilizado en Neumorphism 2.0
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-secondary;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color.adjust($bg-secondary, $lightness: -15%);
+  border-radius: 6px;
+  border: 2px solid $bg-secondary;
+
+  &:hover {
+    background: color.adjust($bg-secondary, $lightness: -25%);
+  }
+}
+
+// ==============================================================================
+// CLASES GLOBALES UTILITARIAS: NEUMORPHISM 2.0 & LIQUID GLASS
+// ==============================================================================
+.neu-card {
+  @include neu-surface(20px, 8px);
+}
+
+.neu-btn {
+  @include neu-button();
+}
+
+.neu-btn-primary {
+  @include neu-button();
+  @include neu-button-accent($accent-blue);
+}
+
+.neu-btn-danger {
+  @include neu-button();
+  @include neu-button-accent($accent-red);
+}
+
+.neu-btn-success {
+  @include neu-button();
+  @include neu-button-accent($accent-emerald);
+}
+
+.neu-inset {
+  @include neu-concave();
+}
+
+.liquid-card {
+  @include liquid-glass(22px);
+}
+
+.liquid-dock {
+  @include liquid-glass(32px);
+  padding: 12px 20px;
+}
+
+.liquid-glass-panel {
+  @include liquid-glass(20px);
+}
